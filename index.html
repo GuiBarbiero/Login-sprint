@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Equipes de Corrida</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #e62424;
+        }
+
+        .login-container input, .login-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e62424;
+            color: #fff;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .login-container button:hover {
+            background-color: #c51f1f;
+        }
+
+        .error {
+            color: #ff4747;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            .login-container {
+                padding: 15px;
+            }
+
+            .login-container input, .login-container select {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .login-container button {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .error {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Login</h1>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <select id="team" required>
+                <option value="">Escolha sua equipe</option>
+                <option value="mahindra">Mahindra</option>
+                <option value="venture">Venture</option>
+                <option value="nissan">Nissan</option>
+            </select>
+            <button type="submit">Entrar</button>
+            <p class="error" id="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const team = document.getElementById('team').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Verificação simples de login
+            if (email === "mahindra@gmail.com" && password === "mahindra") {
+                // Redirecionamento com base na escolha da equipe
+                switch (team) {
+                    case "mahindra":
+                        window.location.href = "https://turbo-six-neon.vercel.app/";
+                        break;
+                    case "venture":
+                        window.location.href = "https://sprint-main-venture-racing.vercel.app/";
+                        break;
+                    case "nissan":
+                        window.location.href = "https://sprint-main-nissam.vercel.app/";
+                        break;
+                    default:
+                        errorMessage.textContent = "Por favor, selecione uma equipe.";
+                }
+            } else {
+                // Exibir mensagem de erro se o login falhar
+                errorMessage.textContent = "Usuário ou senha incorretos.";
+            }
+        }
+    </script>
+
+</body>
+</html>
